@@ -1,0 +1,56 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "Rapidash MVC Example"
+basePath: "/"
+schemes:
+  - "http"
+paths:
+  /mvc/item/{id}:
+    get:
+      summary: "Get an item"
+      description: "Of all the items, you wanted this one."
+      operationId: "getItem"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "path"
+          name: "id"
+          description: "item id"
+          required: true
+          type: string
+      responses:
+        200:
+          description: "Found it"
+          schema:
+            $ref: "#/definitions/ItemResponse"
+        404:
+          description: "Not found"
+  /mvc/items:
+    get:
+      summary: "List items"
+      description: "This endpoint returns a list of items ids. Only the ids are returned (not the items themselves)."
+      operationId: "getListItemsIds"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "Item id list"
+          schema:
+            type: array
+            items:
+              type: string
+definitions:
+  ItemResponse:
+    type: "object"
+    properties:
+      message:
+        type: string
+      numbers:
+        type: array
+        items:
+          type: number
+          format: int32
+

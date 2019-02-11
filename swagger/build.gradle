@@ -1,0 +1,26 @@
+plugins {
+    id 'org.hidetake.swagger.generator' version '2.16.0'
+}
+
+dependencies {
+    // TODO lol doesn't work
+    // compile 'io.swagger.core.v3:swagger-annotations:2.0.6'
+    compile 'io.swagger:swagger-annotations:1.5.21'
+    compile "org.springframework.boot:spring-boot-starter-web"
+    swaggerCodegen 'io.swagger.codegen.v3:swagger-codegen-cli:3.0.0'
+}
+
+swaggerSources {
+    mvc {
+        inputFile = file('swagger.yaml')
+        code {
+            language = 'spring'
+            configFile = file('config.json')
+            components = ['models', 'apis']
+        }
+    }
+}
+
+// Configure compile task dependency and source
+compileJava.dependsOn swaggerSources.mvc.code
+sourceSets.main.java.srcDir "${swaggerSources.mvc.code.outputDir}/src/main/java"

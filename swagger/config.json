@@ -1,0 +1,11 @@
+{
+  "groupId": "github.chickenbane",
+  "artifactId": "generated-swagger",
+  "artifactVersion": "1.0.0",
+  "library": "spring-boot",
+  "modelPackage": "github.chickenbane.mvc.rest.model",
+  "apiPackage": "github.chickenbane.mvc.rest.api",
+  "interfaceOnly": true,
+  "java8": true,
+  "dateLibrary": "java8-localdatetime"
+}
