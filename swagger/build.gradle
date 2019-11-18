@@ -1,5 +1,5 @@
 plugins {
-    id 'org.hidetake.swagger.generator' version '2.16.0'
+    id 'org.hidetake.swagger.generator' version '2.18.1'
 }
 
 dependencies {
@@ -17,10 +17,11 @@ swaggerSources {
             language = 'spring'
             configFile = file('config.json')
             components = ['models', 'apis']
+            dependsOn validation
         }
     }
 }
 
 // Configure compile task dependency and source
-compileJava.dependsOn swaggerSources.mvc.code
+compileKotlin.dependsOn swaggerSources.mvc.code
 sourceSets.main.java.srcDir "${swaggerSources.mvc.code.outputDir}/src/main/java"
