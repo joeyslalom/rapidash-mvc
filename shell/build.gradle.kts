@@ -8,16 +8,14 @@ plugins {
     kotlin("plugin.spring")
 }
 
-dependencyManagement {
-    imports {
-        mavenBom(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
-    }
+java.sourceCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenCentral()
 }
 
 dependencies {
     implementation(project(":swagger"))
-
-    implementation("github.chickenbane:rapidash-spring-boot-starter:v0.0.3")
 
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.shell:spring-shell-starter:2.0.0.RELEASE")
