@@ -8,10 +8,10 @@ plugins {
 
 }
 
-dependencyManagement {
-    imports {
-        mavenBom(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
-    }
+java.sourceCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenCentral()
 }
 
 dependencies {

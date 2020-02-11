@@ -13,6 +13,12 @@ dependencyManagement {
     }
 }
 
+java.sourceCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenCentral()
+}
+
 dependencies {
     swaggerCodegen("io.swagger.codegen.v3:swagger-codegen-cli:3.0.5")
     implementation("io.swagger:swagger-annotations:1.5.22")
