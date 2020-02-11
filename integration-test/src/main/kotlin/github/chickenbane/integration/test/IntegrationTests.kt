@@ -1,5 +1,6 @@
-package github.chickenbane.integration
+package github.chickenbane.integration.test
 
+import github.chickenbane.integration.RestClient
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired

@@ -16,7 +16,6 @@ repositories {
 dependencies {
     implementation(project(":swagger"))
 
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -24,13 +23,10 @@ dependencies {
 
     implementation(project(":swagger"))
 
-    testImplementation("org.springframework.boot:spring-boot-starter-test") {
+    implementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
-}
-
-tasks.withType<Test> {
-    useJUnitPlatform()
+    implementation("org.junit.platform:junit-platform-console")
 }
 
 tasks.withType<KotlinCompile> {

@@ -7,17 +7,3 @@ plugins {
 
 group = "github.chickenbane"
 version = "0.0.1-SNAPSHOT"
-
-// integration-test module requires a service running to test against
-// run manually with: ./gradlew -Pintegration-test test
-project("integration-test") {
-    tasks.withType<Test> {
-        onlyIf {
-            project.hasProperty("integration-test")
-        }
-    }
-}
-
-
-// to force tests: ./gradlew -Pintegration-test --no-build-cache cleanTest test
-
