@@ -3,8 +3,8 @@ package github.chickenbane.integration
 import github.chickenbane.integration.test.IntegrationTests
 import org.junit.platform.engine.TestDescriptor
 import org.junit.platform.engine.discovery.DiscoverySelectors
-import org.junit.platform.launcher.TestIdentifier
-import org.junit.platform.launcher.TestPlan
+import org.junit.platform.launcher.Launcher
+import org.junit.platform.launcher.LauncherDiscoveryRequest
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder
 import org.junit.platform.launcher.core.LauncherFactory
 import org.junit.platform.launcher.listeners.LoggingListener
@@ -41,6 +41,8 @@ class Junit5Runner(private val testClasses: List<Class<*>>) : ApplicationRunner,
 
     private var exitCode = 0
 
+    override fun getExitCode(): Int = exitCode
+
     override fun run(args: ApplicationArguments?) {
         val selectors = testClasses.map { DiscoverySelectors.selectClass(it) }.toTypedArray()
         val request = LauncherDiscoveryRequestBuilder.request()
@@ -48,12 +50,8 @@ class Junit5Runner(private val testClasses: List<Class<*>>) : ApplicationRunner,
                 .build()
 
         val launcher = LauncherFactory.create()
-        val testPlan = launcher.discover(request)
 
-        // log tests
-        testPlan.testIds().forEach {
-            log.info("uniqueId=${it.uniqueId} displayName=${it.displayName}")
-        }
+        logTests(launcher, request)
 
         val listener = SummaryGeneratingListener()
         val logListener = LoggingListener.forBiConsumer { t, u ->
@@ -80,10 +78,16 @@ class Junit5Runner(private val testClasses: List<Class<*>>) : ApplicationRunner,
         log.info("Junit Summary:$stream")
     }
 
-    override fun getExitCode(): Int = exitCode
+    // logs tests found for the request, optional
+    private fun logTests(launcher: Launcher, request: LauncherDiscoveryRequest) {
+        val testPlan = launcher.discover(request)
 
-    private fun TestPlan.testIds(): List<TestIdentifier> = this.roots
-            .flatMap { this.getDescendants(it) }
-            .filter { it.type == TestDescriptor.Type.TEST }
+        testPlan.roots
+                .flatMap { testPlan.getDescendants(it) }
+                .filter { it.type == TestDescriptor.Type.TEST }
+                .forEach {
+                    log.info("uniqueId=${it.uniqueId} displayName=${it.displayName}")
+                }
+    }
 
 }
