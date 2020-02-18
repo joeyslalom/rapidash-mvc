@@ -44,3 +44,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         jvmTarget = "1.8"
     }
 }
+
+tasks.withType<ProcessResources> {
+    expand(project.properties)
+}
