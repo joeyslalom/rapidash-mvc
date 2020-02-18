@@ -45,12 +45,6 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     }
 }
 
-// Populate Gradle properties in application.properties:
-// https://docs.spring.io/spring-boot/docs/current/reference/html/howto.html#howto-automatic-expansion
-tasks.withType<ProcessResources> {
-    expand(project.properties)
-}
-
 springBoot {
     buildInfo()
 }
