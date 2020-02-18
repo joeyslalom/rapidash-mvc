@@ -45,6 +45,6 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     }
 }
 
-tasks.withType<ProcessResources> {
-    expand(project.properties)
+springBoot {
+    buildInfo()
 }
