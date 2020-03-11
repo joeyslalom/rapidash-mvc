@@ -3,7 +3,7 @@ import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 plugins {
     id("io.spring.dependency-management")
-    id("org.hidetake.swagger.generator") version "2.18.1"
+    id("org.hidetake.swagger.generator") version "2.18.2"
     `java-library`
 }
 

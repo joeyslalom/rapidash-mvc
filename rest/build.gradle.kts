@@ -2,7 +2,7 @@ plugins {
     id("org.springframework.boot")
     id("io.spring.dependency-management")
 
-    id("com.gorylenko.gradle-git-properties") version "2.2.0"
+    id("com.gorylenko.gradle-git-properties") version "2.2.2"
     kotlin("jvm")
     kotlin("plugin.spring")
 
