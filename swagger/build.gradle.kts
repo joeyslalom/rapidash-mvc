@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    swaggerCodegen("io.swagger.codegen.v3:swagger-codegen-cli:3.0.5")
+    swaggerCodegen("io.swagger.codegen.v3:swagger-codegen-cli:3.0.16")
     implementation("io.swagger:swagger-annotations:1.5.22")
     implementation("org.springframework.boot:spring-boot-starter-web")
 }

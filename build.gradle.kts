@@ -14,5 +14,5 @@ allprojects {
     fun getVersionDetails(): VersionDetails = (extra["versionDetails"] as groovy.lang.Closure<*>)() as VersionDetails
 
     group = "github.chickenbane"
-    version= getVersionDetails().version
+    version = getVersionDetails().version
 }
